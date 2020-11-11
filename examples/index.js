@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Routes from './routes';
-import { RatioUtils } from '../utils';
+import { RatioUtils } from '../src/utils';
 
 const { convertX: cx } = RatioUtils;
 

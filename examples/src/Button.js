@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
-import Button from '../components/Button';
+import Button from '../../src/components/Button';
 
 export default class ButtonExample extends PureComponent {
   render() {

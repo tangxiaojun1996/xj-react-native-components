@@ -28,7 +28,13 @@ module.exports = {
     'react/jsx-props-no-spreading': [0], // 扩展运算符
     'no-nested-ternary': [0], // 不允许嵌套三元
     'arrow-parens': ['warn', 'as-needed'], // 箭头函数格式 (as-needed为单参数情况无需括号)
-    'react/static-property-placement': [0],
-    'react/no-unused-prop-types': [1],
+    'react/static-property-placement': [0], // 静态属性书写位置
+    'react/no-unused-prop-types': [1], // 没有使用到的propTypes
+    'func-names': [1, 'as-needed'], // 函数名
+    'space-before-function-paren': [1, {
+      anonymous: 'never',
+      named: 'never',
+      asyncArrow: 'always',
+    }], // 函数参数前是否要空格
   },
 };

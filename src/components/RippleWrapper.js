@@ -88,7 +88,7 @@ const RippleWrapper = WrappedComponent => class Wrapper extends Component {
 
       this.width = width;
       this.height = height;
-      this.rippleRadius = Math.max(width, height);
+      this.rippleRadius = Math.sqrt(width ** 2 + height ** 2);
     };
 
     rippleStart = () => {

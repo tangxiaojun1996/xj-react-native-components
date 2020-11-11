@@ -1,4 +1,6 @@
-export * as Utils from './utils';
+import * as Utils from './utils';
+
+export { Utils };
 
 export { default as RippleWrapper } from './components/RippleWrapper';
 

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
-import Text from '../components/Text';
+import Text from '../../src/components/Text';
 
 export default class ButtonExample extends PureComponent {
   render() {

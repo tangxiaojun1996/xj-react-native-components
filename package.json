@@ -5,7 +5,8 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "build": "rm -rf lib && ./node_modules/.bin/babel src --ignore examples --out-dir lib --copy-files"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
@@ -32,7 +33,8 @@
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0",
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
     "babel-jest": "~25.2.6",
