@@ -1,4 +1,4 @@
-import ButtonExample from './button';
+import ButtonExample from './Button';
 
 const routes = [{
   name: 'Button',

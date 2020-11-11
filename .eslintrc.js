@@ -28,5 +28,7 @@ module.exports = {
     'react/jsx-props-no-spreading': [0], // 扩展运算符
     'no-nested-ternary': [0], // 不允许嵌套三元
     'arrow-parens': ['warn', 'as-needed'], // 箭头函数格式 (as-needed为单参数情况无需括号)
+    'react/static-property-placement': [0],
+    'react/no-unused-prop-types': [1],
   },
 };

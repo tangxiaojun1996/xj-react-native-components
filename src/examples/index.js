@@ -13,7 +13,7 @@ const { convertX: cx } = RatioUtils;
 const Stack = createStackNavigator();
 
 function HomeScreen({ navigation }) {
-  const renderItem = (routeProps) => (
+  const renderItem = routeProps => (
     <TouchableOpacity
       key={routeProps.name}
       style={styles.item}
@@ -31,7 +31,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
-        {Routes.map((route) => (
+        {Routes.map(route => (
           <Stack.Screen
             key={route.name}
             name={route.name}

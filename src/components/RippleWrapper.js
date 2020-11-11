@@ -8,7 +8,17 @@ import {
 const DURATION = 300;
 const MARGIN_STYLE = ['margin', 'marginHorizontal', 'marginVertical', 'marginTop', 'marginLeft', 'marginRight', 'marginBottom'];
 
-const RippleWrapper = (WrappedComponent) => class Wrapper extends Component {
+const RippleWrapper = WrappedComponent => class Wrapper extends Component {
+  static propTypes = {
+    onPress: PropTypes.func,
+    style: ViewPropTypes.style,
+  };
+
+  static defaultProps = {
+    onPress: () => {},
+    style: {},
+  };
+
   constructor(props) {
     super(props);
     this.width = 0;
@@ -72,7 +82,7 @@ const RippleWrapper = (WrappedComponent) => class Wrapper extends Component {
       onShouldBlockNativeResponder: (evt, gestureState) => false,
     });
 
-    onLayout = (e) => {
+    onLayout = e => {
       const { layout } = e.nativeEvent;
       const { width, height } = layout;
 
@@ -135,15 +145,6 @@ const RippleWrapper = (WrappedComponent) => class Wrapper extends Component {
         </View>
       );
     }
-};
-
-RippleWrapper.propTypes = {
-  onPress: PropTypes.func,
-  style: ViewPropTypes.style,
-};
-
-RippleWrapper.defaultProps = {
-  onPress: () => {},
 };
 
 export default RippleWrapper;
