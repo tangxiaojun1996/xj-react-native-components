@@ -1,5 +1,14 @@
 {
-  "main": "index.js",
+  "name": "xj-react-native-components",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "description": "React-native components!",
+  "keywords": [
+    "react-native",
+    "components"
+  ],
+  "license": "MIT",
+  "author": "tangxiaojun1996",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
