@@ -17,6 +17,10 @@
     "test": "jest",
     "build": "rm -rf lib && ./node_modules/.bin/babel src --ignore examples --out-dir lib --copy-files"
   },
+  "peerDependencies": {
+    "react": "16.13.1",
+    "react-native": "0.63.3"
+  },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.10.4",
@@ -30,10 +34,8 @@
     "expo-updates": "~0.3.2",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
-    "react": "16.13.1",
     "react-devtools": "^4.9.0",
     "react-dom": "16.13.1",
-    "react-native": "~0.63.3",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.8",
