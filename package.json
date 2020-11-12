@@ -15,7 +15,13 @@
     "web": "expo start --web",
     "start": "react-native start",
     "test": "jest",
-    "build": "rm -rf lib && ./node_modules/.bin/babel src --ignore examples --out-dir lib --copy-files"
+    "build": "rm -rf lib && ./node_modules/.bin/babel src --ignore examples --out-dir lib --copy-files",
+    "publish:patch": "npm version patch && npm publish",
+    "publish:minor": "npm version minor && npm publish",
+    "publish:major": "npm version major && npm publish",
+    "publish:premajor": "npm version premajor && npm publish",
+    "publish:prepatch": "npm version prepatch && npm publish",
+    "publish:prerelease": "npm version prerelease && npm publish"
   },
   "peerDependencies": {
     "react": "16.13.1",
