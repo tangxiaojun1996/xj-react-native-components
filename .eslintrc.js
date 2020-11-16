@@ -36,5 +36,9 @@ module.exports = {
       named: 'never',
       asyncArrow: 'always',
     }], // 函数参数前是否要空格
+    'react/sort-comp': [0], // 组件中的方法和生命周期排序
+    'no-unused-expressions': [0], // 不允许无用表达式
+    'react/no-deprecated': [0], // 不允许废弃的方法
+    'react/jsx-boolean-value': [0], // 布尔值为true忽略 ={true}
   },
 };
