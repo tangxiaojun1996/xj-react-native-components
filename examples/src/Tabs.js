@@ -7,7 +7,7 @@ export default class TabsExample extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <Tabs defaultPageKey="1">
+        <Tabs defaultPageKey="2" maxLoadPage={3}>
           <Tabs.TabPanel key="0">
             <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'red' }}>
               <ScrollView showsVerticalScrollIndicator={false}>
@@ -25,6 +25,18 @@ export default class TabsExample extends PureComponent {
 
           <Tabs.TabPanel key="2">
             <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'yellow' }} />
+          </Tabs.TabPanel>
+
+          <Tabs.TabPanel key="3">
+            <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'black' }} />
+          </Tabs.TabPanel>
+
+          <Tabs.TabPanel key="4">
+            <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'pink' }} />
+          </Tabs.TabPanel>
+
+          <Tabs.TabPanel key="5">
+            <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'green' }} />
           </Tabs.TabPanel>
         </Tabs>
       </View>
