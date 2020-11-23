@@ -7,8 +7,8 @@ export default class TabsExample extends PureComponent {
   render() {
     return (
       <View style={styles.container}>
-        <Tabs>
-          <Tabs.TabPanel>
+        <Tabs defaultPageKey="1">
+          <Tabs.TabPanel key="0">
             <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'red' }}>
               <ScrollView showsVerticalScrollIndicator={false}>
                 {new Array(100).fill(0).map((_, index) => (
@@ -19,11 +19,11 @@ export default class TabsExample extends PureComponent {
             </View>
           </Tabs.TabPanel>
 
-          <Tabs.TabPanel>
+          <Tabs.TabPanel key="1">
             <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'blue' }} />
           </Tabs.TabPanel>
 
-          <Tabs.TabPanel>
+          <Tabs.TabPanel key="2">
             <View style={{ flex: 1, alignSelf: 'stretch', backgroundColor: 'yellow' }} />
           </Tabs.TabPanel>
         </Tabs>

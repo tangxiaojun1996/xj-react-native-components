@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import {
   StyleSheet,
   View,
@@ -11,6 +11,11 @@ import { DECELERATION } from './config';
 export default class TabContent extends React.Component {
 	static propTypes = {
 	  children: PropTypes.node.isRequired,
+	  defaultPageKey: string,
+	};
+
+	static defaultProps = {
+	  defaultPageKey: undefined,
 	};
 
 	constructor(props) {
@@ -23,18 +28,54 @@ export default class TabContent extends React.Component {
 	    width: 0,
 	    height: 0,
 	    scrollX: new Animated.Value(0),
+	    pageIndexKeyMap: this._getPageIndexKeyMap(props.children),
+	    // eslint-disable-next-line max-len
+	    pageLoadKeyMap: this._getPageKeyMap(props, [props.defaultPageKey || this._getPageKeyByIndex(0)]),
 	  };
 	}
 
 	componentDidMount() {
-	  // eslint-disable-next-line react/destructuring-assignment
-	  this.state.scrollX.addListener(({ value }) => {
+	  const { scrollX } = this.state;
+
+	  scrollX.addListener(({ value }) => {
 	    this.scrollXAnimValue = value;
 	  });
 	}
 
+	_getPageKeyByIndex = pageIndex => {
+	  const { children } = this.props;
+	  const childrenArray = React.Children.map(children, c => c.key);
+	  return childrenArray[pageIndex];
+	}
+
+	_getPageIndexByKey = key => {
+	  const { children } = this.props;
+	  const index = React.Children.map(children, c => c.key).findIndex(k => k === key);
+	  return index > -1 ? index : 0;
+	}
+
+	_getChildrenKeyMap = children => React.Children
+	  .map(children, c => c.key)
+	  .reduce((r, k) => ({ ...r, [k]: false }), {})
+
+	_getPageIndexKeyMap = children => React.Children
+	  .map(children, c => c.key)
+	  .reduce((r, k, idx) => ({ ...r, [idx]: k }), {})
+
+	_getPageKeyMap = (props, activeKeys) => {
+	  const { children } = props;
+	  const activeKeysMap = activeKeys.reduce((r, key) => ({ ...r, [`${key}`]: true }), {});
+	  const childrenKeyMap = this._getChildrenKeyMap(children);
+	  return Object.keys(childrenKeyMap).reduce((r, k) => ({ ...r, [k]: !!activeKeysMap[k] }), {});
+	}
+
 	onContainerLayout = e => {
+	  const { scrollX } = this.state;
+	  const { defaultPageKey } = this.props;
 	  const { width, height } = e.nativeEvent.layout;
+	  const defaultScrollX = -this._getPageIndexByKey(defaultPageKey) * width;
+
+	  scrollX.setValue(defaultScrollX);
 	  this.setState({ width, height });
 	}
 
@@ -54,8 +95,8 @@ export default class TabContent extends React.Component {
 	_isHorizontalSwipe = (e, { dx, dy }) => Math.abs(dx) > Math.abs(dy * 3);
 
 	handleStart = () => {
-	  // eslint-disable-next-line react/destructuring-assignment
-	  this.state.scrollX.stopAnimation();
+	  const { scrollX } = this.state;
+	  scrollX.stopAnimation();
 	  this.scrollX = this.scrollXAnimValue;
 	}
 
@@ -79,6 +120,15 @@ export default class TabContent extends React.Component {
 
 	  this.scrollX = -this.pageIndex * width;
 	  this.scrollToIndex(this.pageIndex);
+
+	  this.loadPages(this.pageIndex);
+	}
+
+	loadPages = pageIndex => {
+	  const { pageIndexKeyMap, pageLoadKeyMap } = this.state;
+	  const newActivePageKey = pageIndexKeyMap[pageIndex];
+	  const newPageLoadKeyMap = { ...pageLoadKeyMap, [newActivePageKey]: true };
+	  this.setState({ pageLoadKeyMap: newPageLoadKeyMap });
 	}
 
 	// 获取子节点数量
@@ -127,10 +177,11 @@ export default class TabContent extends React.Component {
 	}
 
 	render() {
-	  const { width, height, scrollX } = this.state;
+	  const {
+	    width, height, scrollX, pageLoadKeyMap,
+	  } = this.state;
 	  const { children } = this.props;
 	  const contentDimensions = { width, height };
-	  // console.log('React.Children.toArray(): ', React.Children.toArray(children));
 
 	  return (
   <View onLayout={this.onContainerLayout} style={styles.container}>
@@ -141,7 +192,9 @@ export default class TabContent extends React.Component {
       style={[styles.content, contentDimensions, { transform: [{ translateX: scrollX }] }]}
     >
       {React.Children.map(children, child => (
-        <View key={child.key} style={contentDimensions}>{child}</View>
+        <View key={child.key} style={contentDimensions}>
+          {pageLoadKeyMap[child.key] ? child : null}
+        </View>
       ))}
     </Animated.View>
     )}
