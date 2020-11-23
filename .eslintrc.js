@@ -40,5 +40,13 @@ module.exports = {
     'no-unused-expressions': [0], // 不允许无用表达式
     'react/no-deprecated': [0], // 不允许废弃的方法
     'react/jsx-boolean-value': [0], // 布尔值为true忽略 ={true}
+    'no-tabs': [0],
+    'no-mixed-spaces-and-tabs': [0],
+    'no-underscore-dangle': [0],
+    'max-len': ['warn', {
+      code: 100,
+      ignoreTrailingComments: true,
+      ignoreUrls: true,
+    }],
   },
 };

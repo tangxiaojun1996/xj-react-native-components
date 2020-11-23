@@ -2,6 +2,7 @@ import RippleWrapperExample from './src/RippleWrapper';
 import ButtonExample from './src/Button';
 import TextExample from './src/Text';
 import PercentBarExample from './src/PercentBar';
+import Tabs from './src/Tabs';
 
 const routes = [
   {
@@ -16,6 +17,9 @@ const routes = [
   }, {
     name: 'PercentBar',
     component: PercentBarExample,
+  }, {
+    name: 'Tabs',
+    component: Tabs,
   }];
 
 export default routes;
