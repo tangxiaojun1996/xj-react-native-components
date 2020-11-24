@@ -6,7 +6,7 @@ import { Platform, Text as NativeText, StyleSheet } from 'react-native';
 if (Platform.OS !== 'web') {
   const originRender = NativeText.render || NativeText.prototype.render;
   const parent = NativeText.render ? NativeText : NativeText.prototype;
-  parent.render = function (...args) {
+  parent.render = function(...args) {
     const origin = originRender.call(this, ...args);
     return React.cloneElement(origin, {
       style: [!Platform.OS === 'ios' && { fontFamily: '' }, origin.props.style],

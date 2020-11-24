@@ -4,7 +4,7 @@ import {
   Text, View, StyleSheet, ViewPropTypes,
 } from 'react-native';
 
-import RippleWrapper from './RippleWrapper';
+import RippleWrapper from '../RippleWrapper';
 
 class Button extends PureComponent {
   render() {
